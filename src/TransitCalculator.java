@@ -25,7 +25,7 @@ public class TransitCalculator {
     public double[] getRidePrices(){
         //creating array for ridePrices
         double[] ridePrices = new double[3];
-        double dailyPrice = rides * NYCFarePrices[0];
+        double dailyPrice = 2.75;
         ridePrices[0] = dailyPrice;
         ridePrices[1] = unlimited7Price();
         double monthlyPrice = NYCFarePrices[2]/rides;
@@ -33,8 +33,23 @@ public class TransitCalculator {
         return ridePrices;
     }
 
+    public String getBestFare(){
+        int i = 0;
+        String bestFare = "";
+        double[] ridePrices = getRidePrices();
+            if(ridePrices[0] < ridePrices[1] && ridePrices [0] < ridePrices[2]){
+                bestFare = ("You should get the " + NYCFareOptions[0] + " option at $" + ridePrices[0] + " per ride.");
+            } else if(ridePrices[1] < ridePrices[2] && ridePrices [1] < ridePrices[0]){
+                bestFare = ("You should get the " + NYCFareOptions[1] + " option at $" + ridePrices[1] + " per ride.");
+            } else{
+                bestFare = ("You should get the " + NYCFareOptions[2] + " option at $" + ridePrices[2] + " per ride.");
+            }
+        return bestFare;
+    }
+
     //main method
     public static void main(String[] args){
-
+        TransitCalculator transitCalculator = new TransitCalculator(7, 50);
+        System.out.println(transitCalculator.getBestFare());
     }
 }
