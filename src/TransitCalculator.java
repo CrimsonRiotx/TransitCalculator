@@ -1,3 +1,4 @@
+import java.util.Scanner;
 public class TransitCalculator {
     //Attributes
     int days;
@@ -34,7 +35,6 @@ public class TransitCalculator {
     }
 
     public String getBestFare(){
-        int i = 0;
         String bestFare = "";
         double[] ridePrices = getRidePrices();
             if(ridePrices[0] < ridePrices[1] && ridePrices [0] < ridePrices[2]){
@@ -49,7 +49,13 @@ public class TransitCalculator {
 
     //main method
     public static void main(String[] args){
-        TransitCalculator transitCalculator = new TransitCalculator(7, 50);
+        Scanner input = new Scanner(System.in);
+        System.out.println("Please enter the total number of days you are visiting NYC:");
+        int days = input.nextInt();
+        System.out.println("Please enter how many times you plan to use public transit:");
+        int rides = input.nextInt();
+        TransitCalculator transitCalculator = new TransitCalculator(days, rides);
         System.out.println(transitCalculator.getBestFare());
+        System.out.println("\nThank you for using my tool. Have a great day!");
     }
 }
